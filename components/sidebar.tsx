@@ -1,7 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
+import { getAllNotes } from '@/lib/redis';
+import { NoteList } from '@/components/note-list';
 
 export async function Sidebar() {
+  const notes = await getAllNotes();
+  console.log(notes);
   return (
     <>
       <section className='col sidebar'>
@@ -21,7 +25,9 @@ export async function Sidebar() {
         <section className='sidebar-menu' role='menubar'>
           {/* SideSearchField */}
         </section>
-        <nav>{/* SidebarNoteList */}</nav>
+        <nav>
+          <NoteList notes={notes} />
+        </nav>
       </section>
     </>
   );
