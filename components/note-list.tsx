@@ -1,6 +1,10 @@
+import { getAllNotes } from '@/lib/redis';
 import NoteItem from './note-item';
 
-export async function NoteList({ notes }: { notes: Record<string, string> }) {
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+export async function NoteList() {
+  await sleep(10000);
+  const notes = await getAllNotes();
   const arr = Object.entries(notes);
 
   if (arr.length == 0) {

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
-import { getAllNotes } from '@/lib/redis';
 import { NoteList } from '@/components/note-list';
+import { EditButton } from './edit-button';
+import { NoteListSkeleton } from './note-list-skeleton';
 
 export async function Sidebar() {
-  const notes = await getAllNotes();
   return (
     <>
       <section className='col sidebar'>
@@ -22,10 +22,12 @@ export async function Sidebar() {
           </section>
         </Link>
         <section className='sidebar-menu' role='menubar'>
-          {/* SideSearchField */}
+          <EditButton>New</EditButton>
         </section>
         <nav>
-          <NoteList notes={notes} />
+          <Suspense fallback={<NoteListSkeleton />}>
+            <NoteList />
+          </Suspense>
         </nav>
       </section>
     </>
