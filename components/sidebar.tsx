@@ -5,7 +5,6 @@ import { NoteList } from '@/components/note-list';
 
 export async function Sidebar() {
   const notes = await getAllNotes();
-  console.log(notes);
   return (
     <>
       <section className='col sidebar'>
