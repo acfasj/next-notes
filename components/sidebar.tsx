@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { NoteList } from '@/components/note-list';
 import { EditButton } from './edit-button';
 import { NoteListSkeleton } from './note-list-skeleton';
+import { SidebarSearch } from './sidebar-search';
 
 export async function Sidebar() {
   return (
@@ -22,6 +23,7 @@ export async function Sidebar() {
           </section>
         </Link>
         <section className='sidebar-menu' role='menubar'>
+          <SidebarSearch />
           <EditButton>New</EditButton>
         </section>
         <nav>

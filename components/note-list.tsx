@@ -1,5 +1,6 @@
 import { getAllNotes } from '@/lib/redis';
-import NoteItem from './note-item';
+import { NoteListFilter } from './note-list-filter';
+import { NoteItem } from './note-item';
 
 export async function NoteList() {
   const notes = await getAllNotes();
@@ -10,14 +11,12 @@ export async function NoteList() {
   }
 
   return (
-    <ul className='notes-list'>
-      {arr.map(([noteId, note]) => {
+    <NoteListFilter
+      notes={Object.entries(notes).map(([noteId, note]) => {
         return (
-          <li key={noteId}>
-            <NoteItem noteId={noteId} note={JSON.parse(note)} />
-          </li>
+          <NoteItem key={noteId} noteId={noteId} note={JSON.parse(note)} />
         );
       })}
-    </ul>
+    />
   );
 }

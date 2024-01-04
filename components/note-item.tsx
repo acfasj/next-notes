@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import { NoteItemContent } from './note-item-content';
 import { Note } from '@/shared';
 
-export default function NoteItem({
+export function NoteItem({
   noteId,
   note,
 }: {

@@ -4,12 +4,12 @@ import { redirect } from 'next/navigation';
 import { addNote, updateNote, delNote } from '@/lib/redis';
 import { EditorFormState } from '@/shared';
 import { z } from 'zod';
+import { sleep } from '@/lib/util';
 
 const schema = z.object({
   title: z.string(),
   content: z.string().min(1, '请填写内容').max(100, '字数最多 100'),
 });
-const sleep = (ms: number | undefined) => new Promise((r) => setTimeout(r, ms));
 export async function saveNote(prevState: EditorFormState, formData: FormData) {
   const noteId = formData.get('noteId') as string;
   const data = {
